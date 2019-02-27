@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<style type="text/css">
+	div#disp div{
+		width: 300px;
+		border: 2px solid lightgrey;
+		float: left;
+	}
+</style>
+
+</head>
+<body>
+
+	<button style="border-radius:20px">Click Me</button>
+	<div id="disp">	</div>
+<script type="text/javascript">
+	 var xhr;
+	 var sbt=document.getElementsByTagName('button')[0];
+	 sbt.onclick=function(){getDatafromserver();}
+      function getDatafromserver(){
+	 xhr = new XMLHttpRequest();
+	 console.log(xhr);
+
+	 var url='https://jsonplaceholder.typicode.com/users';
+	 xhr.open('get',url,true);
+	 xhr.onreadystatechange=function(){
+	 	if(xhr.readyState==4 && xhr.status==200){
+	 		console.log(xhr.responseText);
+	         
+	 		var obj = JSON.parse(xhr.responseText);
+	 		for(var i=0;i<obj.length;i++){
+	 		var parentdisp=document.getElementById("disp");
+	 		var disp=document.createElement('div');
+	 		var heading=document.createElement('h3');
+	 		var group=document.createElement('ul');
+	 		var id=document.createElement('li');
+	 		var name=document.createElement('li');
+	 		var username=document.createElement('li');
+	 		var email=document.createElement('li');
+	 		var address=document.createElement('li');
+
+	 		heading.innerText="Vendor";
+	 		group.innerText="Details:";
+	 		name.innerText="FirstName : "+obj[i].name;
+	 		id.innerText="Id : "+obj[i].id;
+	 		username.innerText="userName : "+obj[i].username;
+	 		email.innerText="Email : "+obj[i].email;
+	 		address.innerText="City : "+obj[i].address.city;
+
+	 		
+	 		group.appendChild(id);
+	 		group.appendChild(name);
+	 		group.appendChild(username);
+	 		group.appendChild(email);
+	 		group.appendChild(address);
+			disp.appendChild(heading);
+			heading.appendChild(group);
+			parentdisp.appendChild(disp);
+
+	 		}
+	 		
+	 	}
+	 
+	 }
+		xhr.send(null);
+}
+</script>
+</body>
+</html>
