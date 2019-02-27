@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	
+ div#container div{
+		border: 2px solid grey;
+		width: 200px;
+		float: left;
+		text-align: left;
+
+	}
+	ul{
+		padding-left: 20px;
+		list-style: decimal;
+	}
+</style>
+</head>
+<body>
+	<h1>My first fetching data</h1>
+	<div id="container">
+		
+	</div>
+	<script type="text/javascript" src="data.js"></script>
+	<script type="text/javascript">
+	for (var i = 0; i <data.length ; i=i+1) {
+	var parentcontainer=document.getElementById("container");
+    var heading=document.createElement('h3');
+    var container=document.createElement('div');
+    var group=document.createElement('ul');
+    var firstname=document.createElement('li');
+    var lastname=document.createElement('li');
+    var id=document.createElement('li');
+    var gender=document.createElement('li');
+    var city=document.createElement('li');
+    var address=document.createElement('li');
+     
+       
+       heading.innerText="Vendor";
+       group.innerText="Details";
+       id.innerText="Id : "+data[i].id;
+       firstname.innerText="FirstName : "+data[i].firstName;
+       lastname.innerText="LastName : "+data[i].lastName;
+       	gender.innerText="Gender : "+data[i].gender;
+       	city.innerText="City : "+data[i].city;
+       	address.innerText="Address : "+data[i].address;
+       	console.log(heading);
+       
+       	group.appendChild(id);
+       	group.appendChild(firstname);
+       	group.appendChild(lastname);
+       	group.appendChild(gender);
+       	group.appendChild(city);
+       	group.appendChild(address);
+       container.appendChild(heading);
+       	heading.appendChild(group);
+       	
+       	container.appendChild(group);
+       	parentcontainer.appendChild(container);
+
+          
+      }
+			</script>
+</body>
+</html>
